@@ -7,8 +7,7 @@ __pycache__/
 venv/
 
 # 程式輸出
-google.csv
-myfile.csv
+output/
 
 # 編輯器與系統檔
 .vscode/

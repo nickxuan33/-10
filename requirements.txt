@@ -1,7 +1,5 @@
 beautifulsoup4
-fake-useragent
 nltk
-numpy
 pandas
 requests
 scikit-learn>=1.0  # get_feature_names_out() requires 1.0+
