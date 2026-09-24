@@ -10,18 +10,18 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 import math
 from nltk.corpus import stopwords
-stopWords = list(set(stopwords.words('english')))
 from bs4 import BeautifulSoup
 
 
 nltk.download('stopwords')
+stopWords = list(set(stopwords.words('english')))
 
 def get_text(url):
     try:
         req = Request(url , headers={'User-Agent': 'Mozilla/5.0'})
         webpage = urlopen(req,timeout=5).read()
         soup = BeautifulSoup(webpage, "html.parser")
-        texts = soup.findAll(text=True)
+        texts = soup.find_all(string=True)
         res=u" ".join(t.strip() for t in texts if t.parent.name not in ['style', 'script', 'head', 'title', 'meta', '[document]'])
         return(res)
     except:
@@ -37,7 +37,7 @@ def google_results(keyword, n_results):
     response = requests.get(google_url, headers=headers, cookies=cookies)
     soup = BeautifulSoup(response.text, "html.parser")
     result = soup.find_all('div', attrs = {'class': 'ZINbbc'})
-    results=[re.search('\/url\?q\=(.*)\&sa',str(i.find('a', href = True)['href'])) for i in result if "url" in str(i)]
+    results=[re.search(r'\/url\?q\=(.*)\&sa',str(i.find('a', href = True)['href'])) for i in result if "url" in str(i)]
     links=[i.group(1) for i in results if i != None]
     return (links)
 
