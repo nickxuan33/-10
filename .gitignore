@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# 虛擬環境
+.venv/
+venv/
+
+# 程式輸出
+google.csv
+myfile.csv
+
+# 編輯器與系統檔
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
