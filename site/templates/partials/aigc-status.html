@@ -1,0 +1,5 @@
+{% if op.aigc_listed %}
+<p class="badge">{% if site.aigc_logo %}<img src="{{ site.aigc_logo }}" alt="Alberta iGaming Corporation" width="72" height="24" loading="lazy"> {% endif %}On AiGC's approved list{% if op.listing_checked_on %} · checked {{ op.listing_checked_on|date }}{% endif %}</p>
+{% else %}
+<p class="badge badge-warning">Not on AiGC's approved list, so it cannot be published</p>
+{% endif %}

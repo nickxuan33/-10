@@ -1,0 +1,37 @@
+# Site settings. Values marked CHANGE are placeholders: the production build
+# (python build.py) refuses to run until they are replaced.
+
+site_name: Alberta Casino Guide        # your brand name
+tagline: Independent reviews of Alberta's regulated online casinos
+base_url: https://www.example.com      # CHANGE: your domain, https, no trailing slash
+language: en-CA
+og_locale: en_CA
+contact_email: hello@example.com       # CHANGE: an inbox you read
+
+# Optional files under static/, e.g. /img/og-default.png (1200×630 px) for
+# social sharing, and the official AiGC logo from the Alberta iGaming
+# Corporation (some operators require it next to their logo).
+og_image:
+aigc_logo:
+
+# Authors appear on the About page and in the byline of every guide and
+# review. Real names and honest bios help readers and search engines trust
+# the site.
+authors:
+  editor:                              # id used by content and data/operators.yaml
+    name: Your Name                    # CHANGE
+    role: Editor
+    bio: >-
+      CHANGE: two or three true sentences about your experience, for example
+      how long you have followed Canadian gaming regulation and how you test
+      casino sites.
+
+nav:
+  - title: Reviews
+    url: /reviews/
+  - title: Guides
+    url: /guides/
+  - title: How we review
+    url: /how-we-review/
+  - title: Responsible gambling
+    url: /responsible-gambling/

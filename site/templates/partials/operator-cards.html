@@ -1,0 +1,28 @@
+{% set heading = card_heading|default("h3") %}
+{% if operators %}
+<p class="fineprint">We may earn a commission when you sign up through a “Visit” button. It never affects our ratings. <a href="/affiliate-disclosure/">Read our affiliate disclosure</a>.</p>
+<ul class="card-grid">
+{% for op in operators %}
+  <li class="card operator-card">
+    {% if op.logo %}
+    <img src="{{ op.logo }}" alt="{{ op.name }} logo" width="160" height="48" loading="lazy">
+    {% endif %}
+    <{{ heading }} class="card-title"><a href="/reviews/{{ op.slug }}/">{{ op.name }}</a></{{ heading }}>
+    {% include "partials/aigc-status.html" %}
+    {% if op.rating is not none %}
+    <p class="rating">Our rating: <strong>{{ op.rating }}</strong> / 5</p>
+    {% endif %}
+    <p>{{ op.summary }}</p>
+    <p class="card-actions">
+      <a href="/reviews/{{ op.slug }}/">Read our {{ op.name }} review</a>
+      <a class="button" href="/go/{{ op.slug }}/" rel="sponsored nofollow">Visit {{ op.name }}</a>
+    </p>
+    <p class="fineprint">18+ · For players located in Alberta · Play responsibly</p>
+  </li>
+{% endfor %}
+</ul>
+{% else %}
+<div class="notice">
+  <p>We are testing Alberta's approved casinos with real accounts, and our first reviews will appear here. Meanwhile, every approved site is listed on the <a href="https://www.abigaming.ca/players/approved-igaming-sites">Alberta iGaming Corporation's official list</a>.</p>
+</div>
+{% endif %}

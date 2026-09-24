@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ page.title }}</h1>
+{% if page.body %}
+<div class="prose">{{ page.body|safe }}</div>
+{% endif %}
+{% with card_heading = "h2" %}
+{% include "partials/operator-cards.html" %}
+{% endwith %}
+{% include "partials/rg-box.html" %}
+{% endblock %}

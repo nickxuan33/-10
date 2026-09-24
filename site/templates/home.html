@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>{{ page.h1 }}</h1>
+  <p class="lead">{{ page.lead }}</p>
+  {% if page.actions %}
+  <p class="actions">
+  {% for action in page.actions %}
+    <a class="button{% if not loop.first %} button-secondary{% endif %}" href="{{ action.url }}">{{ action.label }}</a>
+  {% endfor %}
+  </p>
+  {% endif %}
+</section>
+
+<section aria-labelledby="reviews-heading">
+  <h2 id="reviews-heading">Casinos we have reviewed</h2>
+  {% include "partials/operator-cards.html" %}
+</section>
+
+<section aria-labelledby="guides-heading">
+  <h2 id="guides-heading">Guides for Alberta players</h2>
+  {% include "partials/guide-list.html" %}
+  <p><a href="/guides/">See all guides</a></p>
+</section>
+
+<section aria-labelledby="how-heading">
+  <h2 id="how-heading">How we work</h2>
+  <ul class="card-grid">
+    <li class="card"><h3>Approved sites only</h3><p>We only cover operators on the Alberta iGaming Corporation's approved list, and we check that list again every month.</p></li>
+    <li class="card"><h3>Tested with real accounts</h3><p>We sign up, deposit, withdraw and contact support ourselves. <a href="/how-we-review/">See how we review</a>.</p></li>
+    <li class="card"><h3>Responsible gambling first</h3><p>Every review covers limits and self-exclusion tools. <a href="/responsible-gambling/">Find support options</a>.</p></li>
+  </ul>
+</section>
+{% if page.body %}
+<div class="prose">{{ page.body|safe }}</div>
+{% endif %}
+{% endblock %}

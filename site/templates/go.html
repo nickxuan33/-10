@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ site.language }}">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Redirecting to {{ op.name }}</title>
+{% if op.affiliate_url %}
+<meta http-equiv="refresh" content="0; url={{ op.affiliate_url }}">
+<script>window.location.replace({{ op.affiliate_url|tojson }});</script>
+{% endif %}
+</head>
+<body>
+{% if op.affiliate_url %}
+<p>Redirecting you to <a href="{{ op.affiliate_url }}" rel="sponsored nofollow">{{ op.name }}</a>. 18+. For players located in Alberta.</p>
+{% else %}
+<p>No link has been set for {{ op.name }} yet.</p>
+{% endif %}
+</body>
+</html>

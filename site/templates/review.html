@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+{% set op = page.op %}
+<article class="review">
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <p class="byline">
+      {% if page.author %}By <a href="{{ page.author.url }}">{{ page.author.name }}</a>{% endif %}
+      {% if op.reviewed_on %} · Reviewed <time datetime="{{ op.reviewed_on.isoformat() }}">{{ op.reviewed_on|date }}</time>{% endif %}
+      {% if page.updated %} · Updated <time datetime="{{ page.updated.isoformat() }}">{{ page.updated|date }}</time>{% endif %}
+    </p>
+    {% if op.draft %}
+    <p class="badge badge-warning">Draft: only visible in preview builds</p>
+    {% endif %}
+  </header>
+
+  <section class="verdict" aria-labelledby="verdict-heading">
+    <h2 id="verdict-heading">Our verdict</h2>
+    {% if op.logo %}
+    <img src="{{ op.logo }}" alt="{{ op.name }} logo" width="160" height="48">
+    {% endif %}
+    {% if op.rating is not none %}
+    <p class="rating">Our rating: <strong>{{ op.rating }}</strong> / 5</p>
+    {% endif %}
+    <p class="lead">{{ op.summary }}</p>
+    {% include "partials/aigc-status.html" %}
+    <p><a class="button" href="/go/{{ op.slug }}/" rel="sponsored nofollow">Visit {{ op.name }}</a></p>
+    <p class="fineprint">18+. For players located in Alberta. Play responsibly. We may earn a commission if you sign up through this link; it never affects our rating. <a href="/affiliate-disclosure/">Read our affiliate disclosure</a>.</p>
+  </section>
+
+  <section aria-labelledby="facts-heading">
+    <h2 id="facts-heading">Key facts</h2>
+    <div class="table-wrap">
+      <table class="facts">
+        <tr><th scope="row">Approval status</th><td>{% if op.aigc_listed %}On the <a href="https://www.abigaming.ca/players/approved-igaming-sites">AiGC approved list</a>{% if op.listing_checked_on %} (checked {{ op.listing_checked_on|date }}){% endif %}{% else %}Not on the AiGC approved list{% endif %}</td></tr>
+        {% if op.website %}
+        <tr><th scope="row">Website</th><td>{{ op.website|host }}</td></tr>
+        {% endif %}
+        {% if op.games %}
+        <tr><th scope="row">Games</th><td>{{ op.games|join(", ") }}</td></tr>
+        {% endif %}
+        {% if op.payment_methods %}
+        <tr><th scope="row">Payment methods</th><td>{{ op.payment_methods|join(", ") }}</td></tr>
+        {% endif %}
+        {% if op.withdrawal_time %}
+        <tr><th scope="row">Withdrawal time (our test)</th><td>{{ op.withdrawal_time }}</td></tr>
+        {% endif %}
+        {% if op.mobile %}
+        <tr><th scope="row">Mobile</th><td>{{ op.mobile }}</td></tr>
+        {% endif %}
+        {% if op.support %}
+        <tr><th scope="row">Customer support</th><td>{{ op.support }}</td></tr>
+        {% endif %}
+        {% if op.rg_tools %}
+        <tr><th scope="row">Responsible gambling tools</th><td>{{ op.rg_tools|join(", ") }}</td></tr>
+        {% endif %}
+      </table>
+    </div>
+  </section>
+
+  {% if op.pros or op.cons %}
+  <div class="pros-cons">
+    {% if op.pros %}
+    <section class="card" aria-labelledby="pros-heading">
+      <h2 id="pros-heading">What we like</h2>
+      <ul>{% for item in op.pros %}<li>{{ item }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+    {% if op.cons %}
+    <section class="card" aria-labelledby="cons-heading">
+      <h2 id="cons-heading">What could be better</h2>
+      <ul>{% for item in op.cons %}<li>{{ item }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="prose">{{ page.body|safe }}</div>
+  {% include "partials/rg-box.html" %}
+</article>
+{% endblock %}

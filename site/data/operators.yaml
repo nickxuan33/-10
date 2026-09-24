@@ -1,0 +1,48 @@
+# One entry per operator. The review text goes in content/reviews/<slug>.md.
+#
+# Only entries with `status: published` appear on the live site, and the
+# build checks them strictly:
+#   - aigc_listed must be true: the brand is on AiGC's Approved iGaming Sites
+#     list (https://www.abigaming.ca/players/approved-igaming-sites)
+#   - listing_checked_on must be no older than 35 days
+#   - website and affiliate_url must be https:// addresses
+# Every fact must come from your own testing or the operator's own pages.
+# Draft entries only appear in the preview build (python build.py --drafts).
+#
+# Fields:
+#   slug                 URL name: /reviews/<slug>/ and /go/<slug>/ (affiliate link)
+#   name                 brand name as it appears on AiGC's list
+#   status               draft | published
+#   website              the operator's Alberta site
+#   affiliate_url        your tracking link from the operator's affiliate program
+#   aigc_listed          true only if you found the brand on AiGC's list
+#   listing_checked_on   the date you last checked AiGC's list (YYYY-MM-DD)
+#   reviewed_on          the date of your hands-on review
+#   author               an author id from config.yaml
+#   rating               optional, your own score from 0 to 5
+#   logo                 optional, a file under static/, e.g. /img/operators/<slug>.svg
+#   summary              one or two sentences with your verdict
+#   games, payment_methods, rg_tools, pros, cons    lists
+#   withdrawal_time, mobile, support                short text
+
+operators:
+  - slug: example-casino
+    name: Example Casino
+    status: draft
+    website: https://example.com
+    affiliate_url: https://example.com/?ref=YOUR-AFFILIATE-ID
+    aigc_listed: false
+    listing_checked_on: 2026-09-24
+    reviewed_on: 2026-09-24
+    author: editor
+    rating:
+    logo:
+    summary: A sample entry that shows the layout of a review page. Replace it with an operator you have tested yourself.
+    games: [Slots, Blackjack, Roulette, Baccarat, Live dealer]
+    payment_methods: []
+    withdrawal_time:
+    mobile:
+    support:
+    rg_tools: [Deposit limits, Time-outs, Self-exclusion]
+    pros: [Write what you liked, based on your own testing]
+    cons: [Write what could be better]

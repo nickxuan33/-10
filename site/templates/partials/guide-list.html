@@ -1,0 +1,8 @@
+<ul class="guide-list">
+{% for guide in guides[:6] %}
+  <li>
+    <h3><a href="{{ guide.path }}">{{ guide.meta.title }}</a></h3>
+    <p>{{ guide.meta.description }}</p>
+  </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="{{ site.language }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.seo_title }}</title>
+<meta name="description" content="{{ page.description }}">
+{% if page.canonical %}
+<link rel="canonical" href="{{ page.canonical }}">
+{% endif %}
+<meta name="robots" content="{{ 'noindex, nofollow' if page.noindex else 'index, follow, max-snippet:-1, max-image-preview:large' }}">
+<meta property="og:type" content="{{ page.og_type }}">
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:url" content="{{ page.url }}">
+<meta property="og:site_name" content="{{ site.site_name }}">
+<meta property="og:locale" content="{{ site.og_locale }}">
+{% if site.og_image %}
+<meta property="og:image" content="{{ site.base_url }}{{ site.og_image }}">
+{% endif %}
+{% if page.og_type == "article" and page.lastmod %}
+<meta property="article:modified_time" content="{{ page.lastmod.isoformat() }}">
+{% endif %}
+<meta name="twitter:card" content="{{ 'summary_large_image' if site.og_image else 'summary' }}">
+<meta name="theme-color" content="#1a2332">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>{{ css|safe }}</style>
+<script type="application/ld+json">{{ page.jsonld|safe }}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{% if preview %}
+<div class="preview-bar" role="note">Preview build: includes drafts and is hidden from search engines. Do not publish it.</div>
+{% endif %}
+<div class="rg-bar" role="note">18+ · For players located in Alberta · Free 24/7 help: <a href="tel:+18663322322">1-866-332-2322</a> · <a href="/responsible-gambling/">Responsible gambling</a></div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">{{ site.site_name }}</a>
+    <nav aria-label="Main">
+      <ul>
+      {% for item in site.nav %}
+        <li><a href="{{ item.url }}"{% if page.section == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+{% if page.breadcrumbs|length > 1 %}
+<nav class="container breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+  {% for name, url in page.breadcrumbs %}
+    {% if loop.last %}
+    <li><span aria-current="page">{{ name }}</span></li>
+    {% else %}
+    <li><a href="{{ url }}">{{ name }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ol>
+</nav>
+{% endif %}
+<main id="main" class="container">
+{% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <section aria-labelledby="footer-site">
+        <h2 id="footer-site">{{ site.site_name }}</h2>
+        <p>{{ site.tagline }}.</p>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/how-we-review/">How we review</a></li>
+          <li><a href="/contact/">Contact us</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="footer-help">
+        <h2 id="footer-help">Get help</h2>
+        <ul>
+          <li>Addiction Helpline (24/7): <a href="tel:+18663322322">1-866-332-2322</a></li>
+          <li>211 Alberta: dial 211</li>
+          <li><a href="https://gamesenseab.ca/">GameSense by AGLC</a></li>
+          <li><a href="/responsible-gambling/">Responsible gambling</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="footer-legal">
+        <h2 id="footer-legal">Legal</h2>
+        <ul>
+          <li><a href="/affiliate-disclosure/">Affiliate disclosure</a></li>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="https://www.abigaming.ca/players/approved-igaming-sites">AiGC approved sites</a></li>
+        </ul>
+      </section>
+    </div>
+    <p class="footer-note">{{ site.site_name }} is an independent review site for adults 18+ located in Alberta. We are not a gambling operator and are not affiliated with AGLC or the Alberta iGaming Corporation. We may earn a commission from operators we link to; it never affects our ratings.</p>
+    <p class="footer-note">© {{ year }} {{ site.site_name }}</p>
+  </div>
+</footer>
+</body>
+</html>

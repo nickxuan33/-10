@@ -4,6 +4,8 @@
 
 推廣博弈相關內容前，請先對照[亞伯達內容合規檢查表](docs/alberta-ad-compliance-checklist.md)。
 
+專案裡的亞伯達娛樂城評論網站放在 [`site/`](site/)，使用方式見 [site/README.md](site/README.md)。
+
 ## 環境需求
 
 - Python 3.10 以上

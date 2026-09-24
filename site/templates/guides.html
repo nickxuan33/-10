@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ page.title }}</h1>
+{% if page.body %}
+<div class="prose">{{ page.body|safe }}</div>
+{% endif %}
+<ul class="guide-list">
+{% for guide in guides %}
+  <li>
+    <h2><a href="{{ guide.path }}">{{ guide.meta.title }}</a></h2>
+    <p>{{ guide.meta.description }}</p>
+  </li>
+{% endfor %}
+</ul>
+{% include "partials/rg-box.html" %}
+{% endblock %}

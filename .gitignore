@@ -8,6 +8,9 @@ venv/
 
 # 程式輸出
 output/
+site/dist/
+site/dist-preview/
+site/*.tmp/
 
 # 編輯器與系統檔
 .vscode/

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="guide">
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <p class="byline">By <a href="{{ page.author.url }}">{{ page.author.name }}</a> · Published <time datetime="{{ page.date.isoformat() }}">{{ page.date|date }}</time>{% if page.updated != page.date %} · Updated <time datetime="{{ page.updated.isoformat() }}">{{ page.updated|date }}</time>{% endif %}</p>
+  </header>
+  {% if page.toc|length > 2 %}
+  <nav class="toc" aria-labelledby="toc-heading">
+    <h2 id="toc-heading">On this page</h2>
+    <ol>
+    {% for id, name in page.toc %}
+      <li><a href="#{{ id }}">{{ name }}</a></li>
+    {% endfor %}
+    {% if page.faq %}
+      <li><a href="#faq">Frequently asked questions</a></li>
+    {% endif %}
+    </ol>
+  </nav>
+  {% endif %}
+  <div class="prose">{{ page.body|safe }}</div>
+  {% if page.faq %}
+  <section class="prose faq" aria-labelledby="faq">
+    <h2 id="faq">Frequently asked questions</h2>
+    {% for item in page.faq %}
+    <h3>{{ item.q }}</h3>
+    <p>{{ item.a }}</p>
+    {% endfor %}
+  </section>
+  {% endif %}
+  {% if page.sources %}
+  <section class="prose sources" aria-labelledby="sources-heading">
+    <h2 id="sources-heading">Sources</h2>
+    <ul>
+    {% for source in page.sources %}
+      <li><a href="{{ source.url }}">{{ source.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+  {% include "partials/rg-box.html" %}
+  {% if page.related %}
+  <aside aria-labelledby="related-heading">
+    <h2 id="related-heading">Related guides</h2>
+    <ul class="guide-list">
+    {% for guide in page.related %}
+      <li>
+        <h3><a href="{{ guide.path }}">{{ guide.meta.title }}</a></h3>
+        <p>{{ guide.meta.description }}</p>
+      </li>
+    {% endfor %}
+    </ul>
+  </aside>
+  {% endif %}
+</article>
+{% endblock %}
